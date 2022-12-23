@@ -5,7 +5,7 @@ import {
 import {
     Navigate
 } from 'react-router-dom'
-export const UserLogin = async (data, LoginUser, navigate) => {
+export const UserLogin = async (data, LoginUser, navigate,setError) => {
     try {
         console.log("data", data);
         const res = await axios({
@@ -24,6 +24,8 @@ export const UserLogin = async (data, LoginUser, navigate) => {
 
     } catch (error) {
         console.log(error);
+    
+       setError(error.response.data.message)
     }
 }
 

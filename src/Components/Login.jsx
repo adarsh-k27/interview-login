@@ -30,7 +30,7 @@ function Login() {
       email,
       password
     }
-    UserLogin(data, LoginUser,Navigate);
+    UserLogin(data, LoginUser,Navigate,setError);
   };
 
   return (
