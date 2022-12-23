@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import RouterWrapper from "./Router";
+import { useContext, useEffect } from "react";
+import UserContext from './Context'
 
 function App() {
+  const {
+    state,
+    LoginReset
+  } = useContext(UserContext)
+  console.log("state",state);
+  useEffect(()=>{
+    const auth=localStorage.getItem('auth')
+    const details = JSON.parse(localStorage.getItem('user'))
+    console.log(auth,details);
+    if(auth && details && details.email){
+      LoginReset(details)
+    }
+  },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App w-screen h-screen flex items-center justify-center '>
+      <RouterWrapper />
     </div>
   );
 }
